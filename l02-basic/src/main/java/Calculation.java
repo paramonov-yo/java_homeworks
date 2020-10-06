@@ -38,26 +38,25 @@ class Сalculation {
 
 //Квадрат:
         if (typeOfShape.equals("Квадрат") | typeOfShape.equals("квадрат")) {
-            shape = new Square();
             System.out.println("Необходимо ввести длину любой стороны квадрата (a):");
             System.out.println("Введите сторону a:");
             a = inputPlusCheck();
-            shape.calcPerimetr(a);
-            shape.calcArea(a);
+            shape = new Square(a);
+            shape.calcPerimetr();
+            shape.calcArea();
 //Прямоугольник:
         } else if (typeOfShape.equals("Прямоугольник") | typeOfShape.equals("прямоугольник")) {
-            shape = new Rectangle();
             System.out.println("Необходимо ввести длины 2-ух разных сторон прямоугольника (a, b):");
             System.out.println("Введите сторону a:");
             a = inputPlusCheck();
             System.out.println("Введите сторону b:");
             b = inputPlusCheck();
-            shape.calcPerimetr(a, b);
-            shape.calcArea(a, b);
+            shape = new Rectangle(a, b);
+            shape.calcPerimetr();
+            shape.calcArea();
 
 //Треугольник:
         } else if (typeOfShape.equals("Треугольник") | typeOfShape.equals("треугольник")) {
-            shape = new Triangle();
             System.out.println("Необходимо ввести длины каждой из сторон треугольник(a,b,c):");
             System.out.println("Введите сторону a:");
             a = inputPlusCheck();
@@ -65,8 +64,9 @@ class Сalculation {
             b = inputPlusCheck();
             System.out.println("Введите сторону c:");
             c = inputPlusCheck();
-            shape.calcPerimetr(a, b, c);
-            shape.calcArea(a, b, c);
+            shape = new Triangle(a, b, c);
+            shape.calcPerimetr();
+            shape.calcArea();
         } else {
             System.out.println("Вы ввели некорректное значение фигуры, попробуйте еще раз");
         }
