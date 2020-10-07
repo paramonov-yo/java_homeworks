@@ -1,5 +1,5 @@
 public class Rectangle extends Shapes {
-    double a, b, rectangleP, rectangleS;
+    double a, b;
 
     Rectangle(double a, double b){
         this.a = a;
@@ -9,16 +9,14 @@ public class Rectangle extends Shapes {
     //Прямоугольник
     public double calcPerimetr() {
         //Расчет периметра(P) прямоугольника:
-        rectangleP = 2 * (a + b);
-        System.out.println("Периметр прямоугольника по введенным данным равен: " + rectangleP);
-        return rectangleP;
+        System.out.println("Периметр прямоугольника по введенным данным равен: " + 2 * (a + b));
+        return 2 * (a + b);
     }
 
     public double calcArea() {
         //Расчет площади (S) прямоугольника:
-        rectangleS = a * b;
-        System.out.println("Площадь прямоугольника по введенным данным равна: " + rectangleS);
-        return rectangleS;
+        System.out.println("Площадь прямоугольника по введенным данным равна: " + a * b);
+        return a * b;
     }
 
 }
