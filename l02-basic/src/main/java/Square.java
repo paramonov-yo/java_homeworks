@@ -1,5 +1,5 @@
 public class Square extends Shapes {
-    double a, squareP, squareS;
+    double a;
 
     Square (double a) {
         this.a = a;
@@ -8,15 +8,13 @@ public class Square extends Shapes {
 
     public double calcPerimetr() {
         //Расчет периметра(P) квадрата:
-        squareP = a * 4;
-        System.out.println("Периметр квадрата по введенным данным равен: " + squareP);
-        return squareP;
+        System.out.println("Периметр квадрата по введенным данным равен: " + a * 4);
+        return a * 4;
     }
 
     public double calcArea() {
         //Расчет площади (S) квадрата:
-        squareS = a * a;
-        System.out.println("Площадь квадрата по введенным данным равна: " + squareS);
-        return squareS;
+        System.out.println("Площадь квадрата по введенным данным равна: " + a * a);
+        return a * a;
     }
 }
