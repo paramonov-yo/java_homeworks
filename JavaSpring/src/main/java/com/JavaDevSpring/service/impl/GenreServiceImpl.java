@@ -1,6 +1,5 @@
 package com.JavaDevSpring.service.impl;
 
-import com.JavaDevSpring.model.Comment;
 import com.JavaDevSpring.model.Genre;
 import com.JavaDevSpring.repository.GenreRepository;
 import com.JavaDevSpring.service.GenreService;

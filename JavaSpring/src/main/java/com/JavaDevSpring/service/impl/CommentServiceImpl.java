@@ -1,9 +1,7 @@
 package com.JavaDevSpring.service.impl;
 
-import com.JavaDevSpring.model.Book;
 import com.JavaDevSpring.model.Comment;
 import com.JavaDevSpring.repository.CommentRepository;
-import com.JavaDevSpring.repository.GenreRepository;
 import com.JavaDevSpring.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

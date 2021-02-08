@@ -1,9 +1,7 @@
 package com.JavaDevSpring.service.impl;
 
 import com.JavaDevSpring.model.Author;
-import com.JavaDevSpring.model.Book;
 import com.JavaDevSpring.repository.AuthorRepository;
-import com.JavaDevSpring.repository.GenreRepository;
 import com.JavaDevSpring.service.AuthorQueryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,8 +17,6 @@ public class AuthorServiceImpl implements AuthorQueryService {
 
 	List<Author> authors;
 	private Author localAuthor;
-	//TODO:  скорректировать
-//	Author localAuthor;
 
 	@Autowired
 	private static AuthorRepository repository;

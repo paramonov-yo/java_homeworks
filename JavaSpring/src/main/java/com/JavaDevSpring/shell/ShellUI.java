@@ -4,10 +4,6 @@ import com.JavaDevSpring.model.Author;
 import com.JavaDevSpring.model.Book;
 import com.JavaDevSpring.model.Comment;
 import com.JavaDevSpring.model.Genre;
-import com.JavaDevSpring.repository.AuthorRepository;
-import com.JavaDevSpring.repository.BookRepository;
-import com.JavaDevSpring.repository.CommentRepository;
-import com.JavaDevSpring.repository.GenreRepository;
 import com.JavaDevSpring.service.impl.AuthorServiceImpl;
 import com.JavaDevSpring.service.impl.BookServiceImpl;
 import com.JavaDevSpring.service.impl.CommentServiceImpl;
@@ -20,10 +16,7 @@ import org.springframework.shell.standard.ShellOption;
 
 @ShellComponent
 public class ShellUI {
-//    private static final String NULL = null;
 
-//    @Autowired
-//    public ShellUI(AuthorRepository authorRepository, BookRepository bookRepository, CommentRepository commentRepository, GenreRepository genreRepository, AuthorServiceImpl authorService, BookServiceImpl bookService, CommentServiceImpl commentService, GenreServiceImpl genreService) {
     @Autowired
     public ShellUI(AuthorServiceImpl authorService, BookServiceImpl bookService, CommentServiceImpl commentService, GenreServiceImpl genreService) {
 
@@ -32,14 +25,6 @@ public class ShellUI {
         this.commentService = commentService;
         this.genreService = genreService;
     }
-
-// private AuthorRepository authorRepository;
-//    @Autowired
-//    private BookRepository bookRepository;
-//  	@Autowired
-//	private CommentRepository commentRepository;
-//	@Autowired
-//	private GenreRepository genreRepository;
 
     private final AuthorServiceImpl authorService;
     private final BookServiceImpl bookService;
@@ -52,16 +37,6 @@ public class ShellUI {
     private static int sequenceB = 0;
     private static int sequenceA = 0;
     private static int sequenceG = 0;
-
-    //BookDAO bookDAO = new BookDAO(bookRepository);
-    //BookDAO bookDAO = new BookDAO();
-
-
-//    AuthorServiceImpl authorService = new AuthorServiceImpl(authorRepository);
-//    BookServiceImpl bookService = new BookServiceImpl(bookRepository);
-//    CommentServiceImpl commentService = new CommentServiceImpl(commentRepository);
-//    GenreServiceImpl genreService = new GenreServiceImpl(genreRepository);
-
 
 
     //Books: AddBook (addB)

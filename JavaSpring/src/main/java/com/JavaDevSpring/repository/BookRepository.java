@@ -8,14 +8,6 @@ import org.springframework.stereotype.Repository;
 @Component
 @Repository
 public interface BookRepository extends JpaRepository<Book, Integer> {
-//    Book findById(int id);
-//
-    //List<Book> getBooks(String bookName);
+
 }
 
-//@Repository
-//public interface BookRepository extends JpaRepository<String, Integer> {
-////    Book findById(int id);
-////
-//    //List<Book> getBooks(String bookName);
-//}
