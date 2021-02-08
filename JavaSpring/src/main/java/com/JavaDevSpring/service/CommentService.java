@@ -14,7 +14,7 @@ public interface CommentService {
 
 	Comment save(Comment comment);
 
-	Comment update(Comment comment);
+	Comment update(int id, Comment comment);
 
 	void delete(int id);
 }

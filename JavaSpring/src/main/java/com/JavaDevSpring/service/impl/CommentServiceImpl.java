@@ -1,7 +1,9 @@
 package com.JavaDevSpring.service.impl;
 
+import com.JavaDevSpring.model.Book;
 import com.JavaDevSpring.model.Comment;
 import com.JavaDevSpring.repository.CommentRepository;
+import com.JavaDevSpring.repository.GenreRepository;
 import com.JavaDevSpring.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,15 +13,32 @@ import java.util.List;
 @Service
 public class CommentServiceImpl implements CommentService {
 
+
+    public CommentServiceImpl(CommentRepository repository) {
+        CommentServiceImpl.repository = repository;
+    }
+
+    public CommentRepository getRepository() {
+        return repository;
+    }
+
+    public void setRepository(CommentRepository repository) {
+        CommentServiceImpl.repository = repository;
+    }
+
     @Autowired
-    private CommentRepository repository;
+    private static CommentRepository repository;
 
     @Override
     public List<Comment> getAll() {
+        List<Comment> commentList = repository.findAll();
+        for (Comment comment : commentList) {
+            System.out.println(comment.getComment());
+        }
         return null;
     }
 
-    @Override
+        @Override
     public Comment getCommentById(int commId) {
         return repository.findById(commId).orElse(new Comment());
     }
@@ -30,7 +49,8 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public Comment update(Comment comment) {
+    public Comment update(int id, Comment comment) {
+        //TODO: ID?
         return repository.save(comment);
     }
 

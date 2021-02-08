@@ -1,5 +1,6 @@
 package com.JavaDevSpring.service.impl;
 
+import com.JavaDevSpring.model.Comment;
 import com.JavaDevSpring.model.Genre;
 import com.JavaDevSpring.repository.GenreRepository;
 import com.JavaDevSpring.service.GenreService;
@@ -11,12 +12,28 @@ import java.util.List;
 @Service
 public class GenreServiceImpl implements GenreService {
 
+    public GenreServiceImpl(GenreRepository repository) {
+        GenreServiceImpl.repository = repository;
+    }
+
+    public GenreRepository getRepository() {
+        return repository;
+    }
+
+    public void setRepository(GenreRepository repository) {
+        GenreServiceImpl.repository = repository;
+    }
+
     @Autowired
-    private GenreRepository repository;
+    private static GenreRepository repository;
 
     @Override
-    public List<Genre> findAll() {
-        return repository.findAll();
+    public List<Genre> getAll() {
+        List<Genre> genresList = repository.findAll();
+        for (Genre genres : genresList) {
+            System.out.println(genres.getNameOfGenre());
+        }
+        return null;
     }
 
     @Override
@@ -30,7 +47,8 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
-    public Genre update(Genre genre) {
+    public Genre update(int id, Genre genre) {
+        //TODO: ID?
         return repository.save(genre);
     }
 

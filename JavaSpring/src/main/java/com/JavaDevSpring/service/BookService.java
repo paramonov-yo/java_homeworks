@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface BookService {
 
-    List<?> findAll();
+    List<?> getAll();
 
     Optional<Book> findById(int id);
 

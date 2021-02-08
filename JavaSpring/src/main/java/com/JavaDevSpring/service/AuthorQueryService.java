@@ -1,6 +1,7 @@
 package com.JavaDevSpring.service;
 
 import com.JavaDevSpring.model.Author;
+import com.JavaDevSpring.model.Book;
 
 import java.util.List;
 
@@ -11,5 +12,11 @@ public interface AuthorQueryService {
 	List<Author> getAuthorByFirstName(String firstName);
 
 	Author getAuthorByLastName(String lastName);
+
+	Author save(Author author);
+
+	Author update(int id, Author author);
+
+	void delete(int id);
 
 }
