@@ -1,7 +1,6 @@
 package com.JavaDevSpring.service;
 
 
-import com.JavaDevSpring.model.Book;
 import com.JavaDevSpring.model.Comment;
 
 import java.util.List;

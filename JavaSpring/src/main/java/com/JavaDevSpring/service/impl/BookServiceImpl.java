@@ -2,7 +2,6 @@ package com.JavaDevSpring.service.impl;
 
 import com.JavaDevSpring.model.Book;
 import com.JavaDevSpring.repository.BookRepository;
-import com.JavaDevSpring.repository.GenreRepository;
 import com.JavaDevSpring.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

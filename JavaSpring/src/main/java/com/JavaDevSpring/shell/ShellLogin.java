@@ -1,5 +1,4 @@
 package com.JavaDevSpring.shell;
-import org.springframework.shell.Availability;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 
