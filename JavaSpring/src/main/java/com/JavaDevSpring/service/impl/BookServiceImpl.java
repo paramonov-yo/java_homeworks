@@ -48,7 +48,6 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book update(int id, Book book) {
-        //TODO: ID?
         return repository.save(book);
     }
 
