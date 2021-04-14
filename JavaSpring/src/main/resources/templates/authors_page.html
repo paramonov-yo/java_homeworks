@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+    <link href="css/table_style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+<h2>Перечень существующих авторов в библиотеке.</span></h2>
+<br />
+<br />
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Имя автора</th>
+        <th>Фамилия автора</th>
+    </tr>
+    </thead>
+    <tbody th:each=" author : ${authors}">
+    <tr>
+        <td th:text="${author.id}"></td>
+        <td th:text="${author.getFirstName()}"></td>
+        <td th:text="${author.getLastName()}"></td>
+    </tr>
+    </tbody>
+</table>
+<br />
+<br />
+<h3>Добавление нового автора:</span></h3>
+<br />
+<form id="add-form" th:action="@{/authors}" th:method="post">
+    <div class="row">
+        <label>Имя автора:&nbsp;</label>
+        <input th:value="${author}" name="first_name"/>
+    </div>
+
+    <div class="row">
+        <label>Фамилия автора:&nbsp;</label>
+        <input th:value="${author}" name="last_name"/>
+    </div>
+    <br />
+    <div class="row">
+        <button type="submit">Добавить нового автора</button>
+    </div>
+</form>
+<br />
+<br />
+<h3>Удаление существующего автора:</span></h3>
+<br />
+<h4>Методом выбора из выпадающего списка:</span></h4>
+<form id="delete-form-select" th:action="@{/delete_authors_sel}" method="post" th:object="${Author}">
+    <p> <select class="form-control" id="authorIdSel" name="authorIdSel">
+        <option value="">-- Выберите автора для удаления --</option>
+        <option th:each="author : ${authors}"
+                th:value="${author.id}"
+                th:text="${author.id} +' : '+${author.firstName} +' : '+${author.lastName}"></option>
+    </select></p>
+
+    <div class="row">
+        <button type="submit">Удалить автора</button>
+    </div>
+    <br />
+    <br />
+    <h4>Методом ввода ID вручную:</span></h4>
+</form>
+<form id="delete-form" th:action="@{/delete_authors}" th:method="post">
+    <div class="row">
+        <label>Введите ID Автора, которого хотите удалить:&nbsp;</label>
+        <input th:value="${author}" name="authorID"/>
+    </div>
+    <br />
+    <div class="row">
+        <button type="submit">Удалить книгу</button>
+    </div>
+</form>
+<br />
+<br />
+<h3>Обновление существующего автора:</span></h3>
+<form id="update-form" th:action="@{/update_author}" th:method="post">
+    <input type="hidden" name="_method" value="PUT"/>
+    <div class="row">
+        <label>Введите ID Автора, которого хотите изменить:&nbsp;</label>
+        <input th:value="${author}" name="authorIDUpd"/>
+    </div>
+    <div class="row">
+        <label>Новое название автора:&nbsp;</label>
+        <input th:value="${author}" name="author_fist_name"/>
+        <input th:value="${author}" name="author_last_name"/>
+    </div>
+    <br />
+    <div class="row">
+        <button type="submit">Обновить автора</button>
+    </div>
+</form>
+<br />
+<br />
+<form action="/home" method="get">
+    <input type="submit" value="На домашнюю страницу">
+</form>
+
+</body>
+</html>

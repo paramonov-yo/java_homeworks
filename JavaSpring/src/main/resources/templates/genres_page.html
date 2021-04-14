@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Genres</title>
+    <link href="css/table_style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+<h2>Перечень существующих в библиотеке жанров.</span></h2>
+<br />
+<br />
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Жанр</th>
+    </tr>
+    </thead>
+    <tbody th:each="genre : ${genres}">
+    <tr>
+        <td th:text="${genre.id}"></td>
+        <td th:text="${genre.getNameOfGenre()}"></td>
+    </tr>
+    </tbody>
+</table>
+<br />
+<br />
+<h3>Добавление нового жанра:</span></h3>
+<br />
+<form id="add-form" th:action="@{/genres}" th:method="post">
+    <div class="row">
+        <label>Введение наименование Жанра:&nbsp;</label>
+        <input th:value="${genre}" name="genre"/>
+    </div>
+    <br />
+    <div class="row">
+        <button type="submit">Добавить новый жанр</button>
+    </div>
+</form>
+<br />
+<br />
+<h3>Удаление существующего жанра:</span></h3>
+<br />
+<h4>Методом выбора из выпадающего списка:</span></h4>
+<form id="delete-form-select" th:action="@{/delete_genres_sel}" method="post" th:object="${Genre}">
+    <p> <select class="form-control" id="genreIdSel" name="genreIdSel">
+        <option value="">-- Выберите автора для удаления --</option>
+        <option th:each="genre : ${genres}"
+                th:value="${genre.id}"
+                th:text="${genre.id} +' : '+${genre.nameOfGenre}"></option>
+    </select></p>
+
+    <div class="row">
+        <button type="submit">Удалить жанр</button>
+    </div>
+    <br />
+    <br />
+    <h4>Методом ввода ID вручную:</span></h4>
+</form>
+<form id="delete-form" th:action="@{/delete_genres}" th:method="post">
+    <div class="row">
+        <label>Введите ID Жанра, который хотите удалить:&nbsp;</label>
+        <input th:value="${genre}" name="genreID"/>
+    </div>
+    <br />
+    <div class="row">
+        <button type="submit">Удалить жанр</button>
+    </div>
+</form>
+<br />
+<br />
+<h3>Обновление существующего жанра:</span></h3>
+<form id="update-form" th:action="@{/update_genre}" th:method="post">
+    <input type="hidden" name="_method" value="PUT"/>
+    <div class="row">
+        <label>Введите ID Жанра, который хотите изменить:&nbsp;</label>
+        <input th:value="${genre}" name="genreIDUpd"/>
+    </div>
+    <div class="row">
+        <label>Новое название жанра:&nbsp;</label>
+        <input th:value="${genre}" name="genreName"/>
+    </div>
+    <br />
+    <div class="row">
+        <button type="submit">Обновить жанр</button>
+    </div>
+</form>
+<br />
+<br />
+
+<form action="/home" method="get">
+    <input type="submit" value="На домашнюю страницу">
+</form>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Library.Home page</title>
+</head>
+<body>
+<h2>Добро пожаловать в Библиотеку, <span th:text="${login}"></span></h2>
+
+<form action="/authors" method="get">
+    <input type="submit" value="Авторы">
+</form>
+<form action="/genres" method="get">
+    <input type="submit" value="Жанры">
+</form>
+<form action="/books" method="get">
+    <input type="submit" value="Книги">
+</form>
+
+</body>
+</html>
