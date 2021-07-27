@@ -6,10 +6,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Author")
 public class Author {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    //@GeneratedValue(strategy= GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private int id;
     private String firstName;

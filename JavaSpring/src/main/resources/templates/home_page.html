@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Library.Home page</title>
+    <link href="css/table_style.css" rel="stylesheet">
+    <link href="css/button_style.css" rel="stylesheet">
+    <link href="resources/css/style.css" rel="stylesheet">
 </head>
 <body>
-<h2>Добро пожаловать в Библиотеку, <span th:text="${login}"></span></h2>
-
+<h2>Добро пожаловать в Библиотеку, <span th:utext="${userName}"></span></h2>
 <form action="/authors" method="get">
     <input type="submit" value="Авторы">
 </form>
@@ -16,6 +19,17 @@
 <form action="/books" method="get">
     <input type="submit" value="Книги">
 </form>
-
+<br />
+<div sec:authorize ="isAnonymous()">
+    <p class="button1">
+    <a href="../login"> Login </a>
+    </p>
+</div>
+<br />
+<div sec:authorize="isAuthenticated()">
+    <p class="button2">
+    <a href="../logout"> Logout </a>
+    </p>
+</div>
 </body>
 </html>

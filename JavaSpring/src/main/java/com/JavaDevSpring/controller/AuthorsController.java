@@ -29,6 +29,23 @@ public class AuthorsController {
         return "/authors_page";
     }
 
+    @GetMapping("/add_authors")
+    public String getRedirectAddAuthors() {
+        return "/add_author";
+    }
+
+    @GetMapping("/delete_authors")
+    public String getRedirectDelAuthors(Model model) {
+        List<Author> authors = authorRepository.findAll();
+        model.addAttribute("authors", authors);
+        return "/delete_author";
+    }
+
+    @GetMapping("/update_authors")
+    public String getRedirectUpdAuthors() {
+        return "/update_author";
+    }
+
     @PostMapping("/authors")
 
         public String createAuthor (@RequestParam(required = false, name = "first_name" ) String authorFirstName,
@@ -40,25 +57,34 @@ public class AuthorsController {
     }
 
     @PostMapping("/delete_authors_sel")
-    public String deleteAuthorSelect (@RequestParam(value = "authorIdSel")  Integer authorId) {
+    public String deleteAuthorSelect (@RequestParam(value = "authorIdSel", defaultValue = "0")  Integer authorId) {
         System.out.println("authorId: " + authorId);
-        if (!authorRepository.existsById(authorId)) {
-            System.out.println("Такого ID еще не существует в таблице");
-        } else {
+        try {
             authorRepository.deleteById(authorId);
-            System.out.println("Удален автор с ID = " + authorId);        }
+            System.out.println("delete_authors: (Select) Удален автор с ID = "  + authorId);
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("delete_authors: (Select) Такого ID еще не существует в таблице");
+        }
         return  "redirect:/authors";
     }
 
     @PostMapping("/delete_authors")
     public String deleteAuthor (@RequestParam (required = false, name = "authorID") int authorId) {
-        if (!authorRepository.existsById(authorId)) {
-            System.out.println("Такого ID еще не существует в таблице");
-        } else {
+        String link = "redirect:/authors";
+        try {
+            if (!authorRepository.existsById(authorId)) {
+                link = "redirect:/delete_authors";
+            }
             authorRepository.deleteById(authorId);
-            System.out.println("Удален автор с ID = " + authorId);
+            System.out.println("delete_authors: Удален автор с ID = "  + authorId);
         }
-        return  "redirect:/authors";
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("delete_authors: ID = "+ authorId + " на данный момент не существует в таблице");
+        }
+        return link;
     }
 
     @PutMapping("/update_author")
@@ -66,12 +92,14 @@ public class AuthorsController {
                                @RequestParam(required = false, name = "author_fist_name" ) String firstName,
                                @RequestParam(required = false, name = "author_last_name" ) String lastName)
     {
+        String link = "redirect:/authors";
         System.out.println("authorId: " + authorId);
         System.out.println("firstName: " + firstName);
         System.out.println("lastName: " + lastName);
 
         if (!authorRepository.existsById(authorId)) {
-            System.out.println("Такого ID еще не существует в таблице");
+            link = "redirect:/update_author";
+            System.out.println("update_authors: ID = "+ authorId + " на данный момент не существует в таблице");
         } else {
             Author author = new Author();
             author.setFirstName(firstName);
@@ -82,6 +110,6 @@ public class AuthorsController {
             System.out.println("Обновленное имя автора: " + author.getFirstName());
             System.out.println("Обновленная фамилия автора: " + author.getLastName());
         }
-        return  "redirect:/authors";
+        return link;
     }
 }

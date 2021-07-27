@@ -31,15 +31,13 @@ public class ShellUI {
     private final CommentServiceImpl commentService;
     private final GenreServiceImpl genreService;
 
-
-    //  private String bookName;
     private static int sequenceC = 0;
     private static int sequenceB = 0;
     private static int sequenceA = 0;
     private static int sequenceG = 0;
 
 
-    //Books: AddBook (addB)
+//Books: AddBook (addB)
     @ShellMethod(value = "Add Book", key = {"addB", "bookName"})
     public String addBook(@ShellOption(defaultValue = "Little Red Riding Hood") String bookName){
         bookService.save(new Book(++sequenceB, bookName));
