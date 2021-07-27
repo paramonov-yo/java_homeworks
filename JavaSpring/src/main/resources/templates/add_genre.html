@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Genre</title>
+    <link href="css/table_style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+<h2>Добавить новый жанр (доступ только для ADMIN, MANAGER).</span></h2>
+<br />
+<h3>Добавление нового жанра:</span></h3>
+<br />
+<!--<form id="add-form" th:action="@{/genres}" th:method="post">-->
+    <form id="add-form" th:action="@{/add_genre_act}" th:method="post">
+    <div class="row">
+        <label>Введение наименование Жанра:&nbsp;</label>
+        <input th:value="${genre}" name="genre" required/>
+    </div>
+    <br />
+    <div class="row">
+        <button type="submit">Добавить новый жанр</button>
+    </div>
+</form>
+<br />
+<form action="/home" method="get">
+    <input type="submit" value="На домашнюю страницу">
+</form>
+<br />
+<form action="/genres" method="get">
+    <input type="submit" value="К Жанрам">
+</form>
+<br />
+<form action="/logout" method="get">
+    <input type="submit" value="Logout">
+</form>
+</body>
+</html>

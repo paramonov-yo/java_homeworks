@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Genres</title>
+    <link href="css/table_style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+<h2>Обновление существующего жанра (доступ только для ADMIN).</span></h2>
+<br />
+<h3>Обновление существующего жанра:</span></h3>
+<form id="update-form" th:action="@{/update_genre}" th:method="post">
+    <input type="hidden" name="_method" value="PUT"/>
+    <div class="row">
+        <label>Введите ID Жанра, который хотите изменить:&nbsp;</label>
+        <input th:value="${genre}" name="genreIDUpd" required/>
+    </div>
+    <div class="row">
+        <label>Новое название жанра:&nbsp;</label>
+        <input th:value="${genre}" name="genreName" required/>
+    </div>
+    <br />
+    <div class="row">
+        <button type="submit">Обновить жанр</button>
+    </div>
+</form>
+<br />
+<form action="/home" method="get">
+    <input type="submit" value="На домашнюю страницу">
+</form>
+<br />
+<form action="/genres" method="get">
+    <input type="submit" value="К Жанрам">
+</form>
+</body>
+</html>

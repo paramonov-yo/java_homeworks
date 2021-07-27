@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Book</title>
+    <link href="css/table_style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+<br />
+<h3>Обновление существующей книги:</span></h3>
+<form id="update-form" th:action="@{/update_book}" th:method="post">
+    <input type="hidden" name="_method" value="PUT"/>
+    <div class="row">
+        <label>Введите ID Книги, которую хотите изменить:&nbsp;</label>
+        <input th:value="${book}" name="bookIDUpd" required/>
+    </div>
+    <div class="row">
+        <label>Новое название книги:&nbsp;</label>
+        <input th:value="${book}" name="book_name" required/>
+    </div>
+    <br />
+    <div class="row">
+        <button type="submit">Обновить книгу</button>
+    </div>
+</form>
+<br />
+<br />
+
+<form action="/home" method="get">
+    <input type="submit" value="На домашнюю страницу">
+</form>
+<br />
+<form action="/books" method="get">
+    <input type="submit" value="К Книгам">
+</form>
+<br />
+<form action="/logout" method="get">
+    <input type="submit" value="Logout">
+</form>
+</body>
+</html>

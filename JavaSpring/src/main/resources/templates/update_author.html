@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Author</title>
+    <link href="css/table_style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+<br />
+<h3>Обновление существующего автора:</span></h3>
+<form id="update-form" th:action="@{/update_author}" th:method="post">
+    <input type="hidden" name="_method" value="PUT"/>
+    <div class="row">
+        <label>Введите ID Автора, которого хотите изменить:&nbsp;</label>
+        <input th:value="${author}" name="authorIDUpd" required/>
+    </div>
+    <div class="row">
+        <label>Новое название автора:&nbsp;</label>
+        <input th:value="${author}" name="author_fist_name" required/>
+        <input th:value="${author}" name="author_last_name"/>
+    </div>
+    <br />
+    <div class="row">
+        <button type="submit">Обновить автора</button>
+    </div>
+</form>
+<br />
+<form action="/home" method="get">
+    <input type="submit" value="На домашнюю страницу">
+</form>
+<br />
+<form action="/authors" method="get">
+    <input type="submit" value="К Авторам">
+</form>
+<br />
+<form action="/logout" method="get">
+    <input type="submit" value="Logout">
+</form>
+</body>
+</html>
