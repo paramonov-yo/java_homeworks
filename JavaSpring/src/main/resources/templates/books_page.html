@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Books</title>
     <link href="css/table_style.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/button_style.css" rel="stylesheet">
 </head>
 <body>
 <h2>Перечень существующих книг в библиотеке.</span></h2>
@@ -26,72 +28,40 @@
 </table>
 <br />
 <br />
-<h3>Добавление новой книги:</span></h3>
-<br />
-<form id="add-form" th:action="@{/books}" th:method="post">
-    <div class="row">
-        <label>Введите название Книги:&nbsp;</label>
-        <input th:value="${book}" name="book"/>
-    </div>
+<div sec:authorize="hasRole('ADMIN')">
+    <form action="/add_books" method="get">
+        <input type="submit" value="Добавить Книгу (ADMIN, MANAGER)">
+    </form>
     <br />
-    <div class="row">
-        <button type="submit">Добавить новую книгу</button>
-    </div>
-</form>
-<br />
-<br />
-<h3>Удаление существующей книги:</span></h3>
-<br />
-<h4>Методом выбора из выпадающего списка:</span></h4>
-<form id="delete-form-select" th:action="@{/delete_books_sel}" method="post" th:object="${Book}">
-    <p> <select class="form-control" id="bookIdSel" name="bookIdSel">
-            <option value="">-- Выберите книгу для удаления --</option>
-            <option th:each="book : ${books}"
-                    th:value="${book.id}"
-                    th:text="${book.id} +' : '+${book.bookName}"></option>
-     </select></p>
 
-    <div class="row">
-        <button type="submit">Удалить книгу</button>
-    </div>
-<br />
-<br />
-    <h4>Методом ввода ID вручную:</span></h4>
-</form>
-<form id="delete-form" th:action="@{/delete_books}" th:method="post">
-    <div class="row">
-        <label>Введите ID Книги, которую хотите удалить:&nbsp;</label>
-        <input th:value="${book}" name="bookID"/>
-    </div>
-    <br />
-    <div class="row">
-        <button type="submit">Удалить книгу</button>
-    </div>
-</form>
-<br />
-<br />
-<h3>Обновление существующей книги:</span></h3>
-<form id="update-form" th:action="@{/update_book}" th:method="post">
-    <input type="hidden" name="_method" value="PUT"/>
-    <div class="row">
-        <label>Введите ID Книги, которую хотите изменить:&nbsp;</label>
-        <input th:value="${book}" name="bookIDUpd"/>
-    </div>
-    <div class="row">
-        <label>Новое название книги:&nbsp;</label>
-        <input th:value="${book}" name="book_name"/>
-    </div>
-    <br />
-    <div class="row">
-        <button type="submit">Обновить книгу</button>
-    </div>
-</form>
-<br />
-<br />
+    <form action="/delete_books" method="get">
+        <input type="submit" value="Удалить Книгу (ADMIN)">
+    </form>
 
+    <br />
+
+    <form action="/update_books" method="get">
+        <input type="submit" value="Обновить Книгу (ADMIN)">
+    </form>
+</div>
+<br />
+<div sec:authorize="hasRole('MANAGER')">
+    <form action="/add_books" method="get">
+        <input type="submit" value="Добавить Книгу (ADMIN, MANAGER)">
+    </form>
+    <br />
+</div>
+<br />
 <form action="/home" method="get">
     <input type="submit" value="На домашнюю страницу">
 </form>
-
+<br />
+<div sec:authorize ="isAnonymous()">
+    <a href="../login"> Login </a>
+</div>
+<br />
+<div sec:authorize="isAuthenticated()">
+    <a href="../logout"> Logout </a>
+</div>
 </body>
 </html>

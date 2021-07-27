@@ -1,14 +1,12 @@
 package com.JavaDevSpring.model;
 
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "Genre")
 public class Genre {
-@Id
-//@GeneratedValue(strategy= GenerationType.SEQUENCE)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private int id;
     private String NameOfGenre;

@@ -12,8 +12,6 @@ public  class ShellLogin {
     private static String userName = null;
 
 
-    //TODO: Доработать нормальное логирование, чтобы нельзя было выполнять действия, не залогинившись
-
     @ShellMethod(value = "Login command", key = {"l", "login"})
     public String login(String userName) {
             while (userName == null) {

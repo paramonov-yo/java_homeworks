@@ -67,7 +67,6 @@ public class AuthorServiceImpl implements AuthorQueryService {
 
 	@Override
 	public Author update(int id, Author author) {
-		//TODO: ID?
 		return repository.save(author);
 	}
 

@@ -26,6 +26,23 @@ public class BooksController {
         return "/books_page";
     }
 
+    @GetMapping("/add_books")
+    public String getRedirectAddBooks() {
+        return "/add_book";
+    }
+
+    @GetMapping("/delete_books")
+    public String getRedirectDelBooks(Model model) {
+        List<Book> books = bookRepository.findAll();
+        model.addAttribute("books", books);
+        return "/delete_book";
+    }
+
+    @GetMapping("/update_books")
+    public String getRedirectUpdBooks() {
+        return "/update_book";
+    }
+
     @PostMapping("/books")
     public String createBook (@RequestParam (required = false, name = "book") String bookName) {
         System.out.println("bookName: " + bookName);
@@ -34,26 +51,34 @@ public class BooksController {
     }
 
     @PostMapping("/delete_books_sel")
-    public String deleteBookSelect (@RequestParam(value = "bookIdSel")  Integer bookId /*, Model model*/) {
+    public String deleteBookSelect (@RequestParam(value = "bookIdSel", defaultValue = "0")  Integer bookId /*, Model model*/) {
         System.out.println("bookId: " + bookId);
-        if (!bookRepository.existsById(bookId)) {
-                System.out.println("Такого ID еще не существует в таблице");
-        } else {
+        try {
             bookRepository.deleteById(bookId);
-            System.out.println("Удалена книга с ID = " + bookId);
+            System.out.println("(Select) Удалена книга с ID = "  + bookId);
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("delete_books(Select): Такого ID еще не существует в таблице");
         }
         return  "redirect:/books";
     }
 
     @PostMapping("/delete_books")
     public String deleteBook (@RequestParam (required = false, name = "bookID") int bookId) {
+        String link = "redirect:/books";
+        try {
             if (!bookRepository.existsById(bookId)) {
-                System.out.println("Такого ID еще не существует в таблице");
-        } else {
+                link = "redirect:/delete_books";
+            }
             bookRepository.deleteById(bookId);
             System.out.println("Удалена книга с ID = " + bookId);
         }
-        return  "redirect:/books";
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("delete_books: ID = "+ bookId + " на данный момент не существует в таблице");
+        }
+        return link;
     }
 
 @PutMapping("/update_book")
@@ -61,9 +86,10 @@ public class BooksController {
                                @RequestParam(required = false, name = "book_name" ) String bookName) {
         System.out.println("bookId: " + bookId);
         System.out.println("book_name: " + bookName);
-
+        String link = "redirect:/books";
         if (!bookRepository.existsById(bookId)) {
-            System.out.println("Такого ID еще не существует в таблице");
+            link = "redirect:/update_book";
+            System.out.println("update_books: ID = "+ bookId + " на данный момент не существует в таблице");
         } else {
             Book book = new Book();
             book.setBookName(bookName);
@@ -73,7 +99,7 @@ public class BooksController {
             System.out.println("Обновленное имя книги: " + book.getBookName());
             System.out.println("ID книги: " + book.getId());
         }
-        return  "redirect:/books";
+        return link;
     }
 
 }

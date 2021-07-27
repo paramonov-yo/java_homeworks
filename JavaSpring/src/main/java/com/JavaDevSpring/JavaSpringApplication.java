@@ -2,10 +2,12 @@ package com.JavaDevSpring;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
-//Author, Genre, Book, Comment
 
-
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 @SpringBootApplication
 public class JavaSpringApplication {
 
@@ -13,7 +15,7 @@ public class JavaSpringApplication {
 		SpringApplication.run(JavaSpringApplication.class, args);
 	}
 
-	}
+}
 
 
 
